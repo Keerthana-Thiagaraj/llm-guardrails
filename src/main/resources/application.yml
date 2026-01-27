@@ -1,0 +1,49 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: llm-guardrails
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+llm-guardrails:
+  decision:
+    # Risk score thresholds (0.0 - 1.0)
+    block-threshold: 0.7
+    redact-threshold: 0.4
+    allow-threshold: 0.0
+  
+  ai:
+    provider: openai
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      model: gpt-3.5-turbo
+      max-tokens: 100
+      temperature: 0.0
+      enabled: ${AI_ENABLED:true}
+  
+  rules:
+    file: classpath:guard-rules.yml
+    enabled: true
+  
+  redaction:
+    replacement-text: "[REDACTED]"
+    enabled: true
+  
+  metrics:
+    storage: memory # Options: memory, redis
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      enabled: false
+
+logging:
+  level:
+    root: INFO
+    com.llmguardrails: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
