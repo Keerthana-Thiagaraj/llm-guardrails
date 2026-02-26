@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class MetricsRepository {
+public class MetricsRepository implements IMetricsRepository {
     
     private final ConcurrentHashMap<Decision, AtomicLong> counters = new ConcurrentHashMap<>();
     private final AtomicLong totalRequests = new AtomicLong(0);

@@ -2,15 +2,15 @@ package com.llmguardrails.service;
 
 import com.llmguardrails.model.Decision;
 import com.llmguardrails.model.dto.MetricsResponse;
-import com.llmguardrails.repository.MetricsRepository;
+import com.llmguardrails.repository.IMetricsRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MetricsService {
     
-    private final MetricsRepository metricsRepository;
+    private final IMetricsRepository metricsRepository;
 
-    public MetricsService(MetricsRepository metricsRepository) {
+    public MetricsService(IMetricsRepository metricsRepository) {
         this.metricsRepository = metricsRepository;
     }
     

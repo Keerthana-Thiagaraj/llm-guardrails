@@ -7,7 +7,7 @@ import com.llmguardrails.model.Decision;
 import com.llmguardrails.model.dto.ValidationRequest;
 import com.llmguardrails.model.dto.ValidationResponse;
 import com.llmguardrails.redaction.RedactionService;
-import com.llmguardrails.repository.MetricsRepository;
+import com.llmguardrails.repository.IMetricsRepository;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +23,13 @@ public class GuardService {
     private final PromptAnalyzer promptAnalyzer;
     private final DecisionEngine decisionEngine;
     private final RedactionService redactionService;
-    private final MetricsRepository metricsRepository;
+    private final IMetricsRepository metricsRepository;
 
     public GuardService(
             PromptAnalyzer promptAnalyzer,
             DecisionEngine decisionEngine,
             RedactionService redactionService,
-            MetricsRepository metricsRepository
+            IMetricsRepository metricsRepository
     ) {
         this.promptAnalyzer = promptAnalyzer;
         this.decisionEngine = decisionEngine;
