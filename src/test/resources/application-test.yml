@@ -1,0 +1,35 @@
+server:
+  port: 0  # Random port for tests
+
+# Disable Redis for tests (use in-memory metrics only)
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+
+llm-guardrails:
+  decision:
+    block-threshold: 0.7
+    redact-threshold: 0.4
+    allow-threshold: 0.0
+  
+  ai:
+    openai:
+      enabled: false  # Disable AI for tests
+  
+  rules:
+    enabled: true
+  
+  redaction:
+    enabled: true
+    replacement-text: "[REDACTED]"
+  
+  metrics:
+    storage: memory
+
+logging:
+  level:
+    root: WARN
+    com.llmguardrails: INFO
+
+
